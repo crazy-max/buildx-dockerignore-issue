@@ -34,7 +34,7 @@ jobs:
           echo "baz" > file3
           sudo chown root.root folder1 folder1/file1 file3
           sudo chmod 700 folder1
-          sudo chown 600 folder1/file1 file3
+          sudo chmod 600 folder1/file1 file3
       -
         name: Build
         uses: docker/build-push-action@v2
