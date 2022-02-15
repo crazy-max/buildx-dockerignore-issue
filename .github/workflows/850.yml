@@ -16,6 +16,7 @@ jobs:
           - v0.7.1
           - https://github.com/docker/buildx.git#refs/pull/894/head
           - https://github.com/crazy-max/buildx.git#fix-dockerignore
+          - https://github.com/crazy-max/buildx.git#vendor-buildkit
           - https://github.com/docker/buildx.git#master
     steps:
       -
