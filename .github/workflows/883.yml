@@ -26,14 +26,15 @@ jobs:
           version: ${{ matrix.version }}
       -
         name: Create non permissive files
+        working-directory: 883/data
         run: |
-          mkdir data/folder1
-          echo "foo" > data/folder1/file1
-          echo "bar" > data/folder1/file2
-          echo "baz" > data/file3
-          sudo chown root.root data/folder1
-          sudo chown root.root data/folder1/file1
-          sudo chown root.root data/file3
+          mkdir folder1
+          echo "foo" > folder1/file1
+          echo "bar" > folder1/file2
+          echo "baz" > file3
+          sudo chown root.root folder1
+          sudo chown root.root folder1/file1
+          sudo chown root.root file3
       -
         name: Build
         uses: docker/build-push-action@v2
