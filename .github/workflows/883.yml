@@ -1,0 +1,41 @@
+name: 850
+
+on:
+  workflow_dispatch:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version:
+          - v0.6.3
+          - v0.7.0
+          - v0.7.1
+          - https://github.com/docker/buildx.git#master
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+        with:
+          version: ${{ matrix.version }}
+      -
+        name: Create non permissive files
+        run: |
+          mkdir data/folder1
+          echo "foo" > data/folder1/file1
+          echo "bar" > data/folder1/file2
+          echo "baz" > data/file3
+          sudo chown root.root data/folder1
+          sudo chown root.root data/folder1/file1
+          sudo chown root.root data/file3
+      -
+        name: Build
+        uses: docker/build-push-action@v2
+        with:
+          context: ./883
