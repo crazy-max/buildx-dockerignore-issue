@@ -36,6 +36,9 @@ jobs:
           sudo chmod 700 folder1
           sudo chmod 600 folder1/file1 file3
       -
+        name: Working tree check
+        run: sudo tree -f -pug -h -D ./883
+      -
         name: Build
         uses: docker/build-push-action@v2
         with:
